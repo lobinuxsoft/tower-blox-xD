@@ -8,6 +8,7 @@ public class HookControl : MonoBehaviour
     [SerializeField] private Rigidbody hook;
     [SerializeField] private float countDownIntancer = 1;
     [SerializeField] private Rigidbody building;
+    [SerializeField] private Vector3 pivotOffset =  5 * Vector3.up;
 
     private Rigidbody buildingBody;
     private LineRenderer line;
@@ -16,6 +17,8 @@ public class HookControl : MonoBehaviour
     {
         line = GetComponent<LineRenderer>();
         line.positionCount = 2;
+        
+        pivot.MovePosition(pivotOffset);
     }
 
     private void LateUpdate()
@@ -53,5 +56,10 @@ public class HookControl : MonoBehaviour
             buildingBody.isKinematic = true;
             buildingBody.transform.localPosition = Vector3.zero;
         }
+    }
+
+    public void UpdatePivotPosition(Vector3 pos)
+    {
+        pivot.MovePosition(pos + pivotOffset);
     }
 }
