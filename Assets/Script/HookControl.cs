@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using UnityEngine;
 
 [RequireComponent(typeof(LineRenderer))]
@@ -7,8 +8,9 @@ public class HookControl : MonoBehaviour
     [SerializeField] private Rigidbody pivot;
     [SerializeField] private Rigidbody hook;
     [SerializeField] private float countDownIntancer = 1;
-    [SerializeField] private Rigidbody building;
+    [SerializeField] private Rigidbody[] buildings;
     [SerializeField] private Vector3 pivotOffset =  5 * Vector3.up;
+    [SerializeField] private float rePositionDuration = 1;
 
     private Rigidbody buildingBody;
     private LineRenderer line;
@@ -17,8 +19,8 @@ public class HookControl : MonoBehaviour
     {
         line = GetComponent<LineRenderer>();
         line.positionCount = 2;
-        
-        pivot.MovePosition(pivotOffset);
+
+        transform.position = pivotOffset;
     }
 
     private void LateUpdate()
@@ -42,6 +44,7 @@ public class HookControl : MonoBehaviour
         if (buildingBody != null)
         {
             buildingBody.isKinematic = false;
+            buildingBody.constraints = RigidbodyConstraints.None;
             buildingBody.transform.SetParent(null);
             buildingBody = null;
             lastInstance = Time.time;
@@ -50,9 +53,11 @@ public class HookControl : MonoBehaviour
     
     private void InstanceBuilding()
     {
+        Random.InitState((int)Time.time);
+        
         if (!buildingBody && (Time.time - lastInstance) > countDownIntancer)
         {
-            buildingBody = Instantiate<Rigidbody>(building, hook.transform, true);
+            buildingBody = Instantiate<Rigidbody>(buildings[Random.Range(0, buildings.Length)], hook.transform, true);
             buildingBody.isKinematic = true;
             buildingBody.transform.localPosition = Vector3.zero;
         }
@@ -60,6 +65,19 @@ public class HookControl : MonoBehaviour
 
     public void UpdatePivotPosition(Vector3 pos)
     {
-        pivot.MovePosition(pos + pivotOffset);
+        UpdatePositionTask(rePositionDuration, pos + pivotOffset);
+    }
+
+    private async void UpdatePositionTask(float duration, Vector3 endValue)
+    {
+        float time = 0;
+        Vector3 startValue = transform.position;
+        while (time < duration)
+        {
+            transform.position = Vector3.Lerp(startValue, endValue, time / duration);
+            time += Time.deltaTime;
+            await Task.Yield();
+        }
+        transform.position = endValue;
     }
 }

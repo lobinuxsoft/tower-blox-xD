@@ -21,6 +21,7 @@ public class BasePlatformControl : MonoBehaviour
         {
             rigidbody.isKinematic = true;
             rigidbody.transform.SetParent(transform, true);
+            rigidbody.transform.localRotation = Quaternion.Euler(Vector3.zero);
 
             Vector3 newPosition = rigidbody.transform.localPosition;
             newPosition.y += rigidbody.transform.localScale.y / 2;
