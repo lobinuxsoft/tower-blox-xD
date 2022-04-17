@@ -55,6 +55,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: wallA Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6979ce7b9ba0ab74f90d5659876ff595, type: 3}
+      propertyPath: m_TagString
+      value: Building
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6979ce7b9ba0ab74f90d5659876ff595, type: 3}
 --- !u!1 &5291925280598046699 stripped
