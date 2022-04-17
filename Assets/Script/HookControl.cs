@@ -59,12 +59,15 @@ public class HookControl : MonoBehaviour
         {
             buildingBody = Instantiate<Rigidbody>(buildings[Random.Range(0, buildings.Length)], hook.transform, true);
             buildingBody.isKinematic = true;
-            buildingBody.transform.localPosition = Vector3.zero;
+            buildingBody.transform.localPosition = Vector3.down;
         }
     }
 
     public void UpdatePivotPosition(Vector3 pos)
     {
+        pos.x = 0;
+        pos.z = 0;
+        
         UpdatePositionTask(rePositionDuration, pos + pivotOffset);
     }
 
