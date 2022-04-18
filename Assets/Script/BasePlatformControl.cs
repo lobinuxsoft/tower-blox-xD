@@ -28,6 +28,7 @@ public class BasePlatformControl : MonoBehaviour
             
             boxCollider.center = newPosition;
 
+            rigidbody.gameObject.tag = "Untagged";
             onBuildingReachPlatform?.Invoke(transform.GetChild(transform.childCount-1).position);
         }
     }

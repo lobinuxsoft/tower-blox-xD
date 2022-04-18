@@ -3,12 +3,13 @@ using UnityEngine;
 public class DamageZone : MonoBehaviour
 {
     [SerializeField] private string tagID;
+    [SerializeField] private IntVariable lives;
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag(tagID))
+        if (other.CompareTag(tagID))
         {
-            Destroy(collision.gameObject);
+            lives.AddValue(-1);
         }
     }
 }

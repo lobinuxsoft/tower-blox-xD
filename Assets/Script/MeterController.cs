@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class MeterController : MonoBehaviour
 {
+    [SerializeField] private IntVariable scoreVariable;
+    [SerializeField] private IntVariable highScoreVariable;
     [SerializeField] private Transform pivot, buildingsContainer;
     [SerializeField] private TextMeshPro meterLabel;
 
     private LineRenderer lineRenderer;
     private int childAmount;
-    private int metersValue = 0;
-    
+
     void Awake()
     {
         lineRenderer = GetComponent<LineRenderer>();
@@ -29,6 +30,8 @@ public class MeterController : MonoBehaviour
 
             UpdatePositionTask(1, buildingsContainer.GetChild(childAmount - 1).transform.position);
         }
+        
+        if(scoreVariable.GetValue() > highScoreVariable.GetValue()) highScoreVariable.SetValue(scoreVariable.GetValue());
     }
     
     private async void UpdatePositionTask(float duration, Vector3 endValue)
@@ -44,8 +47,8 @@ public class MeterController : MonoBehaviour
         {
             pivot.position = Vector3.Lerp(startValue, endValue, time / duration);
             lineRenderer.SetPosition(1, pivot.position);
-            metersValue = Mathf.RoundToInt(Mathf.Lerp(metersValue, endValue.y * 100, time / duration));
-            meterLabel.text = $"{metersValue:0}mts";
+            scoreVariable.SetValue(Mathf.RoundToInt(Mathf.Lerp(scoreVariable.GetValue(), endValue.y * 100, time / duration)));
+            meterLabel.text = $"{scoreVariable.GetValue():0}mts";
             time += Time.deltaTime;
             await Task.Yield();
         }
