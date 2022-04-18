@@ -31,15 +31,10 @@ public class HookControl : MonoBehaviour
         line.SetPosition(0, pivot.position);
         line.SetPosition(1, hook.position);
 
-        if (Input.GetButtonDown("Jump"))
-        {
-            DetachBuilding();
-        }
-        
         InstanceBuilding();
     }
 
-    private void DetachBuilding()
+    public void DetachBuilding()
     {
         if (buildingBody != null)
         {
