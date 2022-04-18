@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class ScoreUI : MonoBehaviour
 {
+    [SerializeField] private bool loadDataOnAwake = false;
     [SerializeField] private string prevText = "Score: ";
     [SerializeField] private IntVariable intVariable;
     private TextMeshProUGUI scoreLabel;
@@ -10,6 +11,9 @@ public class ScoreUI : MonoBehaviour
     private void Awake()
     {
         scoreLabel = GetComponent<TextMeshProUGUI>();
+        
+        if (loadDataOnAwake) intVariable.LoadData();
+        
         scoreLabel.text = $"{prevText}{intVariable.GetValue()}";
         intVariable.onValueChange += OnValueChnage;
     }

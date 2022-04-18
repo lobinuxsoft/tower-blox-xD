@@ -339,6 +339,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9158ba6b55eeed04ca4cbf6729d3f205, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loadDataOnAwake: 0
   prevText: 'Score: '
   intVariable: {fileID: 11400000, guid: 2ae5952c911fb2a4bbd8c6e9971040c8, type: 2}
 --- !u!114 &311243492
@@ -566,6 +567,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9158ba6b55eeed04ca4cbf6729d3f205, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loadDataOnAwake: 1
   prevText: 'High Score: '
   intVariable: {fileID: 11400000, guid: e5a88dc713f67b943baf412cd66b6041, type: 2}
 --- !u!114 &358239218
@@ -1805,7 +1807,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.024976611, y: 0.000000017201012, z: -4.2975712e-10, w: 0.999688}
+  m_LocalRotation: {x: 0.02497659, y: -0.000000017201012, z: 4.2975679e-10, w: 0.999688}
   m_LocalPosition: {x: 0, y: 2, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2052,6 +2054,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: e5a88dc713f67b943baf412cd66b6041, type: 2}
+        m_TargetAssemblyTypeName: IntVariable, Assembly-CSharp
+        m_MethodName: SaveData
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2401,6 +2415,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9158ba6b55eeed04ca4cbf6729d3f205, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loadDataOnAwake: 0
   prevText: 'High Score: '
   intVariable: {fileID: 11400000, guid: e5a88dc713f67b943baf412cd66b6041, type: 2}
 --- !u!114 &1738087054
@@ -2562,7 +2577,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1896315129}
-  m_LocalRotation: {x: 0.024976611, y: 0.000000017201012, z: -4.2975712e-10, w: 0.999688}
+  m_LocalRotation: {x: 0.02497659, y: -0.000000017201012, z: 4.2975679e-10, w: 0.999688}
   m_LocalPosition: {x: 0, y: 2, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
