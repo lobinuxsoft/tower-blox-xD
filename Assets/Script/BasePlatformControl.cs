@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -16,7 +15,9 @@ public class BasePlatformControl : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if(Vector3.Dot(collision.contacts[0].point, transform.up) <= 0 ) return;
-        
+
+        if(collision.gameObject.TryGetComponent<ParticleSystem>(out ParticleSystem ps)) ps.Emit(50);
+
         if (collision.gameObject.TryGetComponent<Rigidbody>(out Rigidbody rigidbody))
         {
             rigidbody.isKinematic = true;
@@ -29,6 +30,7 @@ public class BasePlatformControl : MonoBehaviour
             boxCollider.center = newPosition;
 
             rigidbody.gameObject.tag = "Untagged";
+
             onBuildingReachPlatform?.Invoke(transform.GetChild(transform.childCount-1).position);
         }
     }
